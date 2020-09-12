@@ -1,0 +1,13 @@
+div {
+  width: 1280px;
+  margin: auto;
+  text-align: center;
+  background-color: white;
+  border: solid 1px gray;
+  display: flex;
+  justify-content: center;
+}
+img {
+  width: 150px;
+  height: auto;
+}
