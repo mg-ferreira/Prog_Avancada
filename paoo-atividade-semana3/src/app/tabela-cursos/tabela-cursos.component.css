@@ -1,0 +1,14 @@
+
+.card-par{
+  width: 1100px;
+  height: 115px;
+  display: inline-flex;
+  background-color: rgba(71, 178, 255, 0.3);
+}
+
+.card-impar{
+  width: 1100px;
+  height: 115px;
+  display: inline-flex;
+  background-color: rgba(146, 241, 218, 0.301);
+}

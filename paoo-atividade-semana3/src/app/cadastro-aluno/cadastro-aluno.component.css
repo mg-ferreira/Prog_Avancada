@@ -1,0 +1,15 @@
+.container {
+  border: solid 1px #333;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+#headAluno {
+  text-align: center;
+  font-weight: bolder;
+  background-color: blueviolet;
+}
+
+p {
+  text-align: center;
+}

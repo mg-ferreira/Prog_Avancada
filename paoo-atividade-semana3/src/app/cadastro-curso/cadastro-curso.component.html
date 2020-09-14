@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-6 form-group mt-3">
+    <label for="cursoInput">Curso</label>
+    <input type="text" class="form-control" id="cursoInput" #cursoInput>
+  </div>
+  <div class="col-md-6 form-group mt-3">
+    <label for="turnoInput">Turno</label>
+    <input type="text" class="form-control" id="turnoInput" #turnoInput>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 form-group">
+    <button [ngStyle]="obterEstiloParaOBotao()" type="button" (click)="adicionar(cursoInput.value, turnoInput.value)">Adicionar</button>
+  </div>
+</div>
