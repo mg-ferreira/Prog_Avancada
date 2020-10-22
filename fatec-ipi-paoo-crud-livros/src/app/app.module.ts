@@ -12,6 +12,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { LivrosInserirComponent } from './livros/livros-inserir/livros-inserir.component';
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { LivrosListaComponent } from './livros/livros-lista/livros-lista.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LivrosListaComponent } from './livros/livros-lista/livros-lista.compone
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
