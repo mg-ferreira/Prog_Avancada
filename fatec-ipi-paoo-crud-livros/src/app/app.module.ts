@@ -13,6 +13,7 @@ import { LivrosInserirComponent } from './livros/livros-inserir/livros-inserir.c
 import { CabecalhoComponent } from './cabecalho/cabecalho.component';
 import { LivrosListaComponent } from './livros/livros-lista/livros-lista.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,

@@ -13,21 +13,6 @@ mongoose.connect('mongodb+srv://fatec-ipi:fatec_ipi@cluster0.cmvwh.mongodb.net/f
 
 app.use (bodyParser.json());
 
-// const livros = [
-//   {
-//     id: 1,
-//     titulo: 'Clean Code',
-//     autor: 'Robert C. Martin',
-//     paginas: 431
-//   },
-//   {
-//     id: 2,
-//     titulo: 'Breves respostas para grandes questões',
-//     autor: 'Stephen Hawking',
-//     paginas: 256
-//   }
-// ]
-
 app.use ((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*");
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -43,13 +28,16 @@ app.post ('/api/livros', (req, res, next) => {
     autor: req.body.autor,
     paginas: req.body.paginas
   })
-  livro.save();
-  console.log(livro);
-  res.status(201).json({mensagem: 'Livro inserido'})
+  livro.save()
+  .then( livroInserido => {
+    res.status(201).json({mensagem: 'Livro inserido', id: livroInserido._id
+    })
+  })
 });
 
 app.get ('/api/livros', (req, res, next) => {
   Livro.find().then(documents => {
+    console.log(documents)
     res.status(200).json({
       mensagem: 'Tudo OK',
       livros: documents
@@ -61,5 +49,15 @@ app.get ('/api/livros', (req, res, next) => {
     })
   })
 });
+
+app.delete('/api/livros/:id', (req, res, next) => {
+  Livro.deleteOne({_id: req.params.id})
+  .then((resultado) => {
+    console.log(resultado);
+    res.status(200).json({mensagem: "Livro removido"});
+  })
+});
+
+
 
 module.exports = app;

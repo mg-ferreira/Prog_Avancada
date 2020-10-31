@@ -1,10 +1,6 @@
 <mat-card>
   <form (submit)="onAdicionarLivro(livroForm)" #livroForm="ngForm">
     <mat-form-field>
-      <input type="text" matInput placeholder="Id" name="id" ngModel #id="ngModel" required/>
-      <mat-error *ngIf="id.invalid">Digite um Id Válido</mat-error>
-    </mat-form-field>
-    <mat-form-field>
       <input type="text" matInput placeholder="Título" name="titulo" ngModel #titulo="ngModel" required minlength="4"/>
       <mat-error *ngIf="titulo.invalid">Digite um título válido</mat-error>
     </mat-form-field>
