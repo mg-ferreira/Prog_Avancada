@@ -13,6 +13,10 @@ export class LivroService {
 
   }
 
+  getLivro(idLivro: string) {
+    return this.httpClient.get<{_id: string, titulo: string, autor: string, paginas: number}>(`http://localhost:3000/api/livros/${idLivro}`);
+  }
+
   getLivros(): void {
     this.httpClient.get<{mensagem: string, livros: any}>('http://localhost:3000/api/livros')
     .pipe(map((dados) => {
@@ -47,6 +51,18 @@ export class LivroService {
         this.listaLivrosAtualizada.next([...this.livros]);
       }
     )
+  }
+
+  atualizarLivro(id: string, titulo: string, autor: string, paginas: number) {
+    const livro: Livro = {id, titulo, autor, paginas};
+    this.httpClient.put(`http://localhost:3000/api/livros/${id}`, livro)
+    .subscribe(res => {
+      const copia = [...this.livros];
+      const indice = copia.findIndex(lib => lib.id === livro.id);
+      copia[indice] = livro;
+      this.livros = copia;
+      this.listaLivrosAtualizada.next([...this.livros]);
+    });
   }
 
   removerLivro(id: string):void {

@@ -5,7 +5,8 @@ import { LivrosInserirComponent } from './livros/livros-inserir/livros-inserir.c
 
 const routes: Routes = [
   { path: '', component: LivrosListaComponent },
-  { path: 'cadastrar', component: LivrosInserirComponent }
+  { path: 'cadastrar', component: LivrosInserirComponent },
+  { path: 'editar/:idLivro', component: LivrosInserirComponent }
 ];
 
 @NgModule ({
