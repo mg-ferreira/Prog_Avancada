@@ -2,7 +2,7 @@ const express = require ('express');
 const app = express();
 const bodyParser = require ('body-parser');
 const mongoose = require ('mongoose');
-const Livro = require('./models/livro');
+const livroRoutes = require('./rotas/livros');
 
 mongoose.connect('mongodb+srv://fatec-ipi:fatec_ipi@cluster0.cmvwh.mongodb.net/fatec_ipi_app-livros?retryWrites=true&w=majority')
 .then(() => {
@@ -21,69 +21,6 @@ app.use ((req, res, next) => {
   next();
 });
 
-app.post ('/api/livros', (req, res, next) => {
-  const livro = new Livro({
-    id: req.body.id,
-    titulo: req.body.titulo,
-    autor: req.body.autor,
-    paginas: req.body.paginas
-  })
-  livro.save()
-  .then( livroInserido => {
-    res.status(201).json({mensagem: 'Livro inserido', id: livroInserido._id
-    })
-  })
-});
-
-app.get ('/api/livros', (req, res, next) => {
-  Livro.find().then(documents => {
-    console.log(documents)
-    res.status(200).json({
-      mensagem: 'Tudo OK',
-      livros: documents
-    })
-  }).catch(documents => {
-    res.status(404).json({
-      mensagem: 'Falha na Busca',
-      livros: []
-    })
-  })
-});
-
-app.get ('/api/livros/:id', (req, res, next) => {
-  Livro.findById(req.params.id).then(lib => {
-    if(lib){
-      res.status(200).json(lib);
-    }
-    else {
-      res.status(404).json({mensagem: 'Livro não encontrado!'})
-    }
-  })
-})
-
-app.put('/api/livros/:id', (req, res, next) => {
-  const livro = new Livro({
-    _id: req.params.id,
-    titulo: req.body.titulo,
-    autor: req.body.autor,
-    paginas: req.body.paginas
-  });
-  Livro.updateOne({_id: req.params.id}, livro)
-  .then((resultado) => {
-    console.log(resultado);
-    res.status(200).json({mensagem: 'Atualização realizada com sucesso!'})
-  })
-});
-
-
-app.delete('/api/livros/:id', (req, res, next) => {
-  Livro.deleteOne({_id: req.params.id})
-  .then((resultado) => {
-    console.log(resultado);
-    res.status(200).json({mensagem: "Livro removido"});
-  })
-});
-
-
+app.use('/api/livros', livroRoutes);
 
 module.exports = app;
